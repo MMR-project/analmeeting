@@ -192,7 +192,7 @@ function calcThresh(){
 	cnt4decideThresh++;
 	if(cnt4decideThresh>cntmax){
 		//threshAudio=avgthresh/cnt4decideThresh;
-		threshAudio = 40;
+		threshAudio = 15;
 	}
 	avgpower=0;
 }
