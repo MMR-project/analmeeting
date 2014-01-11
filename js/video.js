@@ -8,7 +8,7 @@ var frameNumberForFPS = 0;
 var frameNumber = 0;
 var startTime = null;
 var startCalibTime = null;
-var calibSpan = 30000;
+var calibSpan = 20000;
 var requestID;
 //var lastTime = 0;
 var moveCount = 0;
@@ -88,7 +88,7 @@ function update(){
 };
 //画像処理のフィルタをセットする関数
 function setFilter(f) {
-  frameNumber = -20;
+  frameNumber = -15;
   imageFilter = f;
 };
 //画像を処理する関数
