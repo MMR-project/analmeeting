@@ -15,6 +15,7 @@ var moveCount = 0;
 var sumCount = 0;
 var numFrame = 0;
 var startTimeV=0;
+var scoreMovie=0;
 
 //過去の画像を保存するためのクラス
 function ImageMemory(iwidth, iheight){
@@ -55,8 +56,10 @@ function update(){
       
         //document.querySelector("#fps").innerHTML = (Math.ceil(frameNumberForFPS/deltaTime) + " fps");
       if(sumCount>0){
-        document.querySelector("#point").innerHTML = "動きの得点："+(Math.min(100, Math.floor((100*moveCount/sumCount)*1.7)));
+        scoreMovie = (Math.min(100, Math.floor((100*moveCount/sumCount)*1.7)));
+        document.querySelector("#point").innerHTML = "動きの得点："+ scoreMovie;
       } else  {
+        scoreMovie = 0;
         document.querySelector("#point").innerHTML = "準備中2・・・・";
       }
       startTime = currentTime;
@@ -165,15 +168,15 @@ dif = function (pixels, args) {
       dl -= imageMemory.threshPixels[i];
       if(dl < 0){
         dl = 0;
-        d[4 * i] = 0;
-        d[4 * i + 1] = 0;
-        d[4 * i + 2] = 0;
+        //d[4 * i] = 0;
+        //d[4 * i + 1] = 0;
+        //d[4 * i + 2] = 0;
       }
       else if(dl > 10){//輝度差が閾値より10高ければ差分ありとする
         count++;
-        d[4 * i] = 255;
-        d[4 * i + 1] = 255;
-        d[4 * i + 2] = 255;
+        //d[4 * i] = 255;
+        //d[4 * i + 1] = 255;
+        //d[4 * i + 2] = 255;
       }
 
     }
