@@ -1,0 +1,17 @@
+@charset "utf-8";
+a {
+color: #399;
+}
+
+a:hover {
+color: #C69;
+}
+a:visited {
+color: #699;
+}
+
+body {
+font: 14px/1.6 "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+color: #666;
+text-align: center;
+} 
