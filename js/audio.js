@@ -25,6 +25,8 @@ function mkAudioFilter(array){
 var _width = 640;
 var _height = 256;
 var freqWidth = 1024;
+var showProcess = true;
+var processing = false;
 
 var frequencyElement;
 var frequencyContext;
@@ -49,6 +51,7 @@ var deltaT;
 var drawCount;
 var thcoef;
 var meetingScore;
+var scoreAudio=0;
 var blankTime;
 var avgthresh;
 
@@ -103,7 +106,8 @@ var drawPowerTrans = function(){
 	powerTransContext.strokeStyle = "rgb(255, 0, 0)";
 	powerTransContext.stroke();
 	var scoreContext = document.getElementById("scoreText");
-	scoreContext.innerHTML = "声の得点："+ parseInt(1000*meetingScore/(getTime()-orgTime));
+	scoreAudio=parseInt(1000*meetingScore/(getTime()-orgTime));
+	scoreContext.innerHTML = "声の得点："+ scoreAudio;
 }
 function drawFrequency(){
 	//平均パワーのデータ更新
@@ -242,9 +246,22 @@ function audioAnimation(){
 	analyser.getByteFrequencyData(frequencyData);
 	//フィルタリング
 	for(var i=0;i<freqWidth;i++){
-		frequencyData[i]*=filterData[i];
+		//frequencyData[i]*=filterData[i];
 		//frequencyData[i]=filterData[i]*255;
 	}
-	drawFrequency();
+	//盛り上がり判定
+	var currentPower=0;
+	currentPower+=frequencyData[0];
+	for (var i = 1, l = frequencyData.length; i < l; i++) {
+		currentPower+=frequencyData[i];
+	}
+	currentPower/=frequencyData.length;
+	avgpower+=currentPower;
+	if(currentPower>threshAudio){
+		largePowerCount++;
+	}
+	if(showProcess==true){
+		drawFrequency();
+	}
 	frameCount++;
 }

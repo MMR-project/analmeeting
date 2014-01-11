@@ -4,12 +4,41 @@ var audioContext;
 var analyser;
 var mediastreamsource;
 
+function showResult(){
+    
+    //var scoreMovie =100;
+    document.location = "questionnaire.html?data="+encodeURIComponent(scoreMovie+","+scoreAudio); 
+}
+
+function onClickStart(){
+    var btn1 = document.getElementById("buttonStart");
+	if(processing){
+		//btn1.innerHTML="スタート"
+		//processing=false;
+		showResult();
+	} else {
+		calibStart();
+		btn1.innerHTML="ストップ"		
+		processing=true;
+		//onClickStart();
+	}
+}
+function onClickShowProcess(){
+	var btn2 = document.getElementById("buttonShow");
+	if(showProcess==true){
+		btn2.innerHTML="過程表示OFF"
+		showProcess=false;
+		//document.getElementById("frequency").visibility=false;
+	}else{
+		btn2.innerHTML="過程表示ON"
+		showProcess=true;
+	}
+}
 
 function init(){
 	 videoElement= document.getElementById('video');
      contextVideo = document.getElementById('videoCanvas').getContext('2d');
     //var localMediaStream = null; 
-
     audioInit();
     videoInit();
     window.URL = window.URL || window.webkitURL;
@@ -45,6 +74,6 @@ function init(){
         }
     );
 }
-
-
 window.addEventListener("load", init, false);
+
+

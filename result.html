@@ -23,14 +23,20 @@ window.onload = function(){
  		aMax: 100
 	}
 	rc.draw(items, params);
+	var scoreMovie=parseInt(result[4]);
+	var scoreAudio=parseInt(result[5]);
+	document.getElementById("scoreAudio").innerHTML="盛り上がり："+scoreAudio+"点";
+	document.getElementById("scoreMovie").innerHTML="躍動感："+scoreMovie+"点";
 }
 </script>
 </head>
 <body>
-<p>採点結果</p>
-<p>自己採点</p>
+<p>アプリの採点</p>
+<div id="scoreAudio"></div>
+<div id="scoreMovie"></div>
+<p>皆さんの採点</p>
 <p><div><canvas width="400" height="300" id="sample"></canvas></div></p>
-<p><a href="advice.html">アドバイス</a></p>
+<!--<p><a href="advice.html">アドバイス</a></p>-->
 <p><a href="resultlist.html">結果一覧</a></p>
 <p><a href="startup.html">はじめにもどる</a></p>
 </body>
