@@ -18,7 +18,7 @@ video {
     vertical-align: center;
     display:block;    
     text-decoration:none;    
-    border:1px solid #225588;    
+    border:3px solid #225588;    
     padding: 5px 0 2px 0;    
     border-radius:30px;    
     background:-moz-linear-gradient(rgba(34,85,136,0.5), rgba(34,85,136,1));    
