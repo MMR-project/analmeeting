@@ -75,7 +75,7 @@ function update(){
         //video.pause();
         var audio = new Audio("");
         audio.autoplay = false;
-        audio.src = "start.mp3";
+        audio.src = "start2.mp3";
         audio.load();
         audio.play();
         window.localStorage.setItem("threshPixels", ""+imageMemory.threshPixels)
