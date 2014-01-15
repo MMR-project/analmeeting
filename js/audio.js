@@ -136,7 +136,6 @@ function drawFrequency(){
 
 //function initialize() {
 function audioInit() {
-
 	//var audioElement = document.getElementById("audio");
 	frequencyElement = document.getElementById("frequency");
 	frequencyContext = frequencyElement.getContext("2d");

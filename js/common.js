@@ -37,6 +37,7 @@ function onClickShowProcess(){
 
 function init(){
 	 videoElement= document.getElementById('video');
+     videoElement.volume=0.0;
      contextVideo = document.getElementById('videoCanvas').getContext('2d');
     //var localMediaStream = null; 
     audioInit();

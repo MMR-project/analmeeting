@@ -75,7 +75,7 @@ function update(){
         //video.pause();
         var audio = new Audio("");
         audio.autoplay = false;
-        audio.src = "start.wav";
+        audio.src = "start.mp3";
         audio.load();
         audio.play();
         window.localStorage.setItem("threshPixels", ""+imageMemory.threshPixels)
@@ -145,6 +145,13 @@ function processVideoFrame() {
   }
 };
 function calibStart(){
+    var audio = new Audio("");
+    audio.autoplay = false;
+    audio.src = "tenko.mp3";
+    audio.load();
+    audio.play();
+
+  
   document.querySelector("#point").innerHTML = "準備中1・・・・";
   startCalibTime = (new Date).getTime();
   audioInit();
