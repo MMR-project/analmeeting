@@ -22,12 +22,13 @@ require(["lib/radar", "storage", "history", "history/item"], function(html5jp, S
 	var score = Storage.get("score");
 	var answers = Storage.get("answer");
 	var history = Storage.get("history") || new History();
+	var average = answers.average();
 
 
 	var showSubjectiveEvaluation = function(){
 		var rc = new html5jp.graph.radar("sample");
 		if(rc != null) {
-			var items = answers.average();
+			var items = average.slice(0, average.length);
 			items.unshift("主観評価");
 			var params = {
  				aCap: ["新規性", "発言できた", "深い議論", "本音"],
@@ -49,7 +50,7 @@ require(["lib/radar", "storage", "history", "history/item"], function(html5jp, S
 	 */
 	var saveHistory = function(){
 		var history_item = new HistoryItem({
-			questionnarie: items.slice(1, items.length),
+			questionnarie: average,
 			score: score
 		});
 		history.add(history_item);
