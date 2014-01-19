@@ -10,6 +10,21 @@ function showResult(){
     document.location = "questionnaire.html?data="+encodeURIComponent(scoreMovie+","+scoreAudio); 
 }
 
+function calibStart(){
+  var audio = new Audio("");
+  audio.autoplay = false;
+  audio.src = "tenko.mp3";
+  audio.load();
+  audio.play();
+  audio.onended=onEnded;
+  document.querySelector("#point").innerHTML = "準備中1・・・・";
+  setFilter(calib);
+};
+function onEnded(){
+    startCalibTime = (new Date).getTime();
+    audioInit();
+    //alert("ok");
+}
 function onClickStart(){
     var btn1 = document.getElementById("buttonStart");
 	if(processing){
@@ -48,7 +63,6 @@ function init(){
                               	navigator.mozGetUserMedia || 
                               	navigator.msGetUserMedia;
     //カメラ使えるかチェック
-
     if (!navigator.getUserMedia) {
         alert("未対応ブラウザです。");
     }

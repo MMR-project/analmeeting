@@ -144,19 +144,6 @@ function processVideoFrame() {
     processImage(canvasVideo); 
   }
 };
-function calibStart(){
-    var audio = new Audio("");
-    audio.autoplay = false;
-    audio.src = "tenko.mp3";
-    audio.load();
-    audio.play();
-
-  
-  document.querySelector("#point").innerHTML = "準備中1・・・・";
-  startCalibTime = (new Date).getTime();
-  audioInit();
-  setFilter(calib);
-};
 // filter to make difference
 dif = function (pixels, args) {
   var d = pixels.data;

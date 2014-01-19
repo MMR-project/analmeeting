@@ -54,6 +54,7 @@ var meetingScore;
 var scoreAudio=0;
 var blankTime;
 var avgthresh;
+var avgmax;
 
 var drawPowerTrans = function(){
 	if(threshAudio<0)
@@ -176,6 +177,7 @@ function audioInit() {
 	cnt4decideThresh=0;
 	cntmax=30;//約3秒
 	avgthresh=0;
+	avgmax=0;
 	largePowerCount=0;
 
 }
@@ -187,13 +189,24 @@ function updateData(){
 	}	
 }
 function calcThresh(){
-	avgthresh+=avgpower*2;
-	cnt4decideThresh++;
-	if(cnt4decideThresh>cntmax){
-		//threshAudio=avgthresh/cnt4decideThresh;
-		threshAudio = 15;
+	//avgthresh+=avgpower;+""
+	if(frameCount>0){
+		var avg = avgpower/frameCount;
+		avgthresh+=avg;
+		if(avgmax<avg){
+			avgmax=avg;
+		}
+		cnt4decideThresh++;
+		if(cnt4decideThresh>cntmax){
+			//threshAudio=avgthresh/cnt4decideThresh;
+			threshAudio = (avgmax+avgthresh/cnt4decideThresh)/3;
+			//alert(Math.round(avgmax)+","+Math.round(avgthresh)+","+Math.round(cnt4decideThresh)+","+Math.round(threshAudio));
+			//threshAudio = 15;
+		}
+		avgpower=0;
+		frameCount=0;
+
 	}
-	avgpower=0;
 }
 
 function audioAnimation(){
@@ -241,7 +254,6 @@ function audioAnimation(){
 	{
 		startTime = lastTime;
 	}
-
 	//以下フル速度
 	analyser.getByteFrequencyData(frequencyData);
 	//フィルタリング
