@@ -35,7 +35,7 @@ var powerTransContext;
 
 var audioContext;
 
-var threshAudio;
+var threshAudio=15;
 var frequencyData;
 //var timeDomainData = new Uint8Array(analyser.frequencyBinCount);
 var powerTransData;
@@ -152,7 +152,7 @@ function audioInit() {
 	powerTransElement.width = _width;
 	powerTransElement.height = _height;
 	//閾値
-	threshAudio = 15;
+	//threshAudio = -1;
 	audioContext = new AudioContext();
 	frequencyData = new Uint8Array(freqWidth);
 	timeDomainData = new Uint8Array(freqWidth);
@@ -202,6 +202,7 @@ function calcThresh(){
 		if(cnt4decideThresh>cntmax){
 			//threshAudio=avgthresh/cnt4decideThresh;
 			threshAudio = (avgmax+avgthresh/cnt4decideThresh)/3;
+			alert(threshAudio);
 			//alert(Math.round(avgmax)+","+Math.round(avgthresh)+","+Math.round(cnt4decideThresh)+","+Math.round(threshAudio));
 			//threshAudio = 15;
 			var audio = new Audio("");
