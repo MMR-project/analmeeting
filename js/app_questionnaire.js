@@ -57,12 +57,11 @@ requirejs(['questionnaire/result', 'questionnaire/answer', 'storage'], function(
 	};
 
 	var associateElements = function(){
-		var nextButton = document.getElementById("cde");
+		var nextButton = document.getElementById("next_button");
 		nextButton.addEventListener("click", nextAction);
 	};
 
 	var main = function(){
-		console.log("init");
 		initInputs();
 		associateElements();
 	};
