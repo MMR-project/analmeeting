@@ -51,6 +51,7 @@ var deltaT;
 var drawCount;
 var thcoef;
 var meetingScore;
+//var meetingScoreTemp;
 var scoreAudio=0;
 var blankTime;
 var avgthresh;
@@ -107,7 +108,7 @@ var drawPowerTrans = function(){
 	powerTransContext.strokeStyle = "rgb(255, 0, 0)";
 	powerTransContext.stroke();
 	var scoreContext = document.getElementById("scoreText");
-	scoreAudio=parseInt(1000*meetingScore/(getTime()-orgTime));
+	scoreAudio=Math.min(100,parseInt(1000*meetingScore/(getTime()-orgTime)));
 	scoreContext.innerHTML = "声の得点："+ scoreAudio;
 }
 function drawFrequency(){
@@ -138,19 +139,20 @@ function drawFrequency(){
 //function initialize() {
 function audioInit() {
 	//var audioElement = document.getElementById("audio");
-	frequencyElement = document.getElementById("frequency");
-	frequencyContext = frequencyElement.getContext("2d");
+	//frequencyElement = document.getElementById("frequency");
+	//frequencyContext = frequencyElement.getContext("2d");
+	//frequencyElement.width = _width;
+	//frequencyElement.height = _height;
+
 	powerTransElement = document.getElementById("powertransition")
 	powerTransContext = powerTransElement.getContext("2d");
 	var scoreContext = document.getElementById("scoreText");
 	//scoreContext.innerHTML="Score:";
 
-	frequencyElement.width = _width;
-	frequencyElement.height = _height;
 	powerTransElement.width = _width;
 	powerTransElement.height = _height;
 	//閾値
-	threshAudio = -1;
+	threshAudio = 15;
 	audioContext = new AudioContext();
 	frequencyData = new Uint8Array(freqWidth);
 	timeDomainData = new Uint8Array(freqWidth);
@@ -171,11 +173,11 @@ function audioInit() {
 	frameCount =0;
 	deltaT=100;
 	drawCount=1;
-	thcoef=1.5;
+	thcoef=2.;
 	meetingScore = 0;
 	blankTime = 0;
 	cnt4decideThresh=0;
-	cntmax=30;//約3秒
+	cntmax=70;//約3秒
 	avgthresh=0;
 	avgmax=0;
 	largePowerCount=0;
@@ -202,6 +204,12 @@ function calcThresh(){
 			threshAudio = (avgmax+avgthresh/cnt4decideThresh)/3;
 			//alert(Math.round(avgmax)+","+Math.round(avgthresh)+","+Math.round(cnt4decideThresh)+","+Math.round(threshAudio));
 			//threshAudio = 15;
+			var audio = new Audio("");
+        	audio.autoplay = false;
+        	audio.src = "wait.mp3";
+        	audio.load();
+        	audio.play();
+
 		}
 		avgpower=0;
 		frameCount=0;
@@ -273,7 +281,7 @@ function audioAnimation(){
 		largePowerCount++;
 	}
 	if(showProcess==true){
-		drawFrequency();
+		//drawFrequency();
 	}
 	frameCount++;
 }
