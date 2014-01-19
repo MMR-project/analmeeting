@@ -14,6 +14,12 @@ define(["lib/backbone", "questionnaire/answer"], function(Backbone, Answer){
 			return result.map(function(item){
 				return item / this.models.length;
 			});
+		},
+		toJSON: function(){
+			var tmp = this.models.map(function(answer){
+				return answer.toJSON();
+			});
+			return JSON.stringify(tmp);
 		}
 	});
 
