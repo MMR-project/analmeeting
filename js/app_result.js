@@ -17,10 +17,11 @@ requirejs.config({
 	}
 });
 
-require(["lib/radar", "storage"], function(html5jp, Storage){
+require(["lib/radar", "storage", "history", "history/item"], function(html5jp, Storage, History, HistoryItem){
 	html5jp = html5jp || window.html5jp;
 	var score = Storage.get("score");
 	var answers = Storage.get("answer");
+	var history = Storage.get("history") || new History();
 
 	var rc = new html5jp.graph.radar("sample");
 	if(rc != null) {
@@ -35,5 +36,16 @@ require(["lib/radar", "storage"], function(html5jp, Storage){
 			"盛り上がり："+score.audio+"点";
 		document.getElementById("scoreMovie").innerHTML =
 			"躍動感："+score.movie+"点";
+
+
+		/*
+		 * save the result
+		 */
+		var history_item = new HistoryItem({
+			questionnarie: items.slice(0, items.length),
+			score: score
+		});
+		history.add(history_item);
+		Storage.set("history", history);
 	}
 });

@@ -1,4 +1,4 @@
-define(["questionnaire/result"], function(Result){
+define(["questionnaire/result", "history"], function(Result, History){
 
 	var Storage = {
 		getScore: function(){
@@ -43,12 +43,25 @@ define(["questionnaire/result"], function(Result){
 		},
 		setAnswer: function(result){
 			var json = "";
-			if(result.toJSON != null){
-				json = result.toJSON();
-			}else{
-				json = JSON.stringify(result);
-			}
+			json = result.toJSON();
 			window.sessionStorage.setItem("questionnaire", json);
+		},
+		getHistory: function(){
+			var result = null;
+			var json = window.localStorage.getItem("history") || "";
+			if(json.length > 0){
+				json = JSON.parse(json);
+				result = new History(json);
+			}
+			return result;
+		},
+		setHistory: function(history){
+			var json = "";
+			json = history.toJSON();
+			window.localStorage.setItem("history", json);
+		},
+		clearHistory: function(){
+			window.localStorage.setItem("history", null);
 		}
 	};
 
@@ -58,7 +71,10 @@ define(["questionnaire/result"], function(Result){
 		get_answer: Storage.getAnswer,
 		set_answer: Storage.setAnswer,
 		set_questionnaire: Storage.getAnswer,
-		set_questionnaire: Storage.setAnswer
+		set_questionnaire: Storage.setAnswer,
+		set_history: Storage.setHistory,
+		get_history: Storage.getHistory,
+		clear_history: Storage.clearHistory
 	};
 
 	Storage["get"] = function(key){
@@ -80,8 +96,14 @@ define(["questionnaire/result"], function(Result){
 		}
 		return null;
 	};
-	
 
+	Storage["clear"] = function(key){
+		var name = "clear_" + key;
+		if(key != null && key.length > 0 && handlers[name] != null){
+			return handlers[name].call();
+		}
+	};
+	
 	return Storage;
 	
 });
