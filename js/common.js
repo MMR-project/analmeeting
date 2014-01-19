@@ -7,7 +7,16 @@ var mediastreamsource;
 function showResult(){
     
     //var scoreMovie =100;
-    document.location = "questionnaire.html?data="+encodeURIComponent(scoreMovie+","+scoreAudio); 
+	if(window.sessionStorage != null){
+		var score = {
+			movie: scoreMovie,
+			audio: scoreAudio
+		};
+		window.sessionStorage.setItem("score", JSON.stringify(score));
+		document.location  ="questionnaire.html";
+	}else{
+		document.location = "questionnaire.html?data="+encodeURIComponent(scoreMovie+","+scoreAudio);
+	}
 }
 
 function onClickStart(){
