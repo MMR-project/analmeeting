@@ -202,7 +202,7 @@ function calcThresh(){
 		if(cnt4decideThresh>cntmax){
 			//threshAudio=avgthresh/cnt4decideThresh;
 			threshAudio = (avgmax+avgthresh/cnt4decideThresh)/3;
-			alert(threshAudio);
+			//alert(threshAudio);
 			//alert(Math.round(avgmax)+","+Math.round(avgthresh)+","+Math.round(cnt4decideThresh)+","+Math.round(threshAudio));
 			//threshAudio = 15;
 			var audio = new Audio("");
