@@ -36,7 +36,7 @@ define(["questionnaire/result"], function(Result){
 			var json = window.sessionStorage.getItem("questionnaire") || "";
 			var result = null;
 			if(json.length > 0){
-				json = JSON.parse(result);
+				json = JSON.parse(json);
 				result = new Result(json);
 			}
 			return result;
