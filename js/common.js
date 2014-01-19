@@ -30,8 +30,9 @@ function calibStart(){
   setFilter(calib);
 };
 function onEnded(){
-    startCalibTime = (new Date).getTime();
+    startCalibTime = (new Date).getTime();    
     audioInit();
+    threshAudio = -1;
     //alert("ok");
 }
 function onClickStart(){
