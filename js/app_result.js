@@ -32,6 +32,14 @@ require(["lib/radar", "storage", "history", "history/item"], function(html5jp, S
  			aMax: 100
 		};
 		rc.draw([items], params);
+		
+		if(!IsNumeric(scoreAudio)){
+		  scoreAudio = 0;
+		}
+		if(!IsNumeric(scoreAudio)){
+		  scoreMovie = 0;
+		 }
+		
 		document.getElementById("scoreAudio").innerHTML="盛り上がり：<font size = '+5' color='red'>"+scoreAudio+"</font>点";
 		document.getElementById("scoreMovie").innerHTML="躍動感：<font size = '+5' color='red'>"+scoreMovie+"</font>点";
 	
