@@ -8,7 +8,7 @@ var frameNumberForFPS = 0;
 var frameNumber = 0;
 var startTime = null;
 var startCalibTime = null;
-var calibSpan = 20000;
+var calibSpan = 15000;
 var requestID;
 //var lastTime = 0;
 var moveCount = 0;
@@ -190,7 +190,7 @@ dif = function (pixels, args) {
 function videoAnimation(){
   var lastTimeV=getTime();
   //1秒ごとの処理
-  var dT = 250;
+  var dT = 333;
   if(lastTimeV-startTimeV>dT){
     startTimeV=lastTimeV;
     update();
