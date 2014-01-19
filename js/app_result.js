@@ -32,11 +32,20 @@ require(["lib/radar", "storage", "history", "history/item"], function(html5jp, S
  			aMax: 100
 		};
 		rc.draw([items], params);
-		document.getElementById("scoreAudio").innerHTML =
-			"盛り上がり："+score.audio+"点";
-		document.getElementById("scoreMovie").innerHTML =
-			"躍動感："+score.movie+"点";
-
+		document.getElementById("scoreAudio").innerHTML="盛り上がり：<font size = '+5' color='red'>"+scoreAudio+"</font>点";
+		document.getElementById("scoreMovie").innerHTML="躍動感：<font size = '+5' color='red'>"+scoreMovie+"</font>点";
+	
+		var point = scoreAudio + scoreMovie;
+	
+		if( point > 180){
+    		document.body.style.backgroundImage= "url('kin.png')";
+		} else if(point > 140){
+	    	document.body.style.backgroundImage= "url('niji.png')";
+		} else if(point > 90){
+	    	document.body.style.backgroundImage= "url('happa.png')";
+		} else {
+	    	document.body.style.backgroundImage = "url('block.png')";
+		}
 
 		/*
 		 * save the result
