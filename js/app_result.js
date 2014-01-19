@@ -23,46 +23,56 @@ require(["lib/radar", "storage", "history", "history/item"], function(html5jp, S
 	var answers = Storage.get("answer");
 	var history = Storage.get("history") || new History();
 
-	var rc = new html5jp.graph.radar("sample");
-	if(rc != null) {
-		var items = answers.average();
-		items.unshift("主観評価");
-		var params = {
- 			aCap: ["新規性", "発言できた", "深い議論", "本音"],
- 			aMax: 100
-		};
-		rc.draw([items], params);
-		
-		if(!IsNumeric(scoreAudio)){
-		  scoreAudio = 0;
-		}
-		if(!IsNumeric(scoreAudio)){
-		  scoreMovie = 0;
-		 }
-		
-		document.getElementById("scoreAudio").innerHTML="盛り上がり：<font size = '+5' color='red'>"+scoreAudio+"</font>点";
-		document.getElementById("scoreMovie").innerHTML="躍動感：<font size = '+5' color='red'>"+scoreMovie+"</font>点";
-	
-		var point = scoreAudio + scoreMovie;
-	
-		if( point > 180){
-    		document.body.style.backgroundImage= "url('kin.png')";
-		} else if(point > 140){
-	    	document.body.style.backgroundImage= "url('niji.png')";
-		} else if(point > 90){
-	    	document.body.style.backgroundImage= "url('happa.png')";
-		} else {
-	    	document.body.style.backgroundImage = "url('block.png')";
-		}
 
-		/*
-		 * save the result
-		 */
+	var showSubjectiveEvaluation = function(){
+		var rc = new html5jp.graph.radar("sample");
+		if(rc != null) {
+			var items = answers.average();
+			items.unshift("主観評価");
+			var params = {
+ 				aCap: ["新規性", "発言できた", "深い議論", "本音"],
+ 				aMax: 100
+			};
+			rc.draw([items], params);
+		}
+	};
+
+	var showObjectiveEvaluation = function(){
+		document.getElementById("scoreAudio").innerHTML =
+			'盛り上がり: <span class="value">' + score.audio + '</span> 点';
+		document.getElementById("scoreMovie").innerHTML = 
+			'躍動感: <span class="value">' + score.movie + '</span> 点';
+	};
+
+	/*
+	 * save the result
+	 */
+	var saveHistory = function(){
 		var history_item = new HistoryItem({
-			questionnarie: items.slice(0, items.length),
+			questionnarie: items.slice(1, items.length),
 			score: score
 		});
 		history.add(history_item);
 		Storage.set("history", history);
-	}
+	};
+	
+	var showTotalEvaluation = function(){
+		var display = document.getElementById("result");
+		var total_score = score.movie + score.audio;
+		
+		if( total_score > 180){
+    		display.setAttribute("class", "excellent");
+		} else if(total_score > 140){
+			display.setAttribute("class", "great");
+		} else if(total_score > 90){
+			display.setAttribute("class", "good");
+		} else {
+			display.setAttribute("class", "not_bad");
+		}
+	};
+	
+	showSubjectiveEvaluation();
+	showObjectiveEvaluation();
+	showTotalEvaluation();
+	saveHistory();
 });
