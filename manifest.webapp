@@ -1,6 +1,6 @@
 {
-  "name": "brest",
-  "description": "ブレスト支援アプリ",
+  "name": "会議採点",
+  "description": "ブレインストーミングや会議の生産性を、さまざまな方面から採点、可視化します。",
   "launch_path": "/startup.html",
   "icons": {
     "30": "/images/icon/icon-30.png",
@@ -21,5 +21,5 @@
     "https://mmr-project.github.io",
     "https://github.com/"
   ],
-  "package_path": "/brest/archive/master.zip"
+  "package_path": "https://github.com/MMR-project/analmeeting/archive/master.zip"
 }
