@@ -12,10 +12,5 @@
 		"128": "/images/icon/icon-128.png"
 	},
 	"version": "0.1",
-	"developer": {
-		"name": "MMR-Project",
-		"url": "https://github.com/MMR-project/"
-	},
-	"default_locale": "ja",
 	"fullscreen": "true"
 }
