@@ -17,5 +17,6 @@
 		"url": "https://github.com/MMR-project/"
 	},
 	"default_locale": "ja",
-	"fullscreen": "true"
+	"fullscreen": "true",
+	"appcache_path": "/cache.manifest"
 }
