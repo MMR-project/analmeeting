@@ -1,8 +1,5 @@
 requirejs.config({
-    baseUrl: 'js',
-    paths: {
-        lib: '../lib'
-    },
+	baseUrl: 'js',
 	shim: {
 		"lib/backbone": {
 			deps: ["lib/underscore", "lib/jquery"],
