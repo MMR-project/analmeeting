@@ -19,4 +19,5 @@
 	"default_locale": "ja",
 	"fullscreen": "true",
 	"appcache_path": "/cache.manifest"
+	"orientation": "landscape-secondary"
 }
