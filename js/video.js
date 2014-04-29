@@ -8,7 +8,7 @@ var frameNumberForFPS = 0;
 var frameNumber = 0;
 var startTime = null;
 var startCalibTime = null;
-var calibSpan = 20000;
+var calibSpan = 15000;
 var requestID;
 //var lastTime = 0;
 var moveCount = 0;
@@ -75,7 +75,7 @@ function update(){
         //video.pause();
         var audio = new Audio("");
         audio.autoplay = false;
-        audio.src = "start2.mp3";
+        audio.src = "start.mp3";
         audio.load();
         audio.play();
         window.localStorage.setItem("threshPixels", ""+imageMemory.threshPixels)
@@ -144,19 +144,6 @@ function processVideoFrame() {
     processImage(canvasVideo); 
   }
 };
-function calibStart(){
-    var audio = new Audio("");
-    audio.autoplay = false;
-    audio.src = "tenko.mp3";
-    audio.load();
-    audio.play();
-
-  
-  document.querySelector("#point").innerHTML = "準備中1・・・・";
-  startCalibTime = (new Date).getTime();
-  audioInit();
-  setFilter(calib);
-};
 // filter to make difference
 dif = function (pixels, args) {
   var d = pixels.data;
@@ -203,7 +190,7 @@ dif = function (pixels, args) {
 function videoAnimation(){
   var lastTimeV=getTime();
   //1秒ごとの処理
-  var dT = 250;
+  var dT = 333;
   if(lastTimeV-startTimeV>dT){
     startTimeV=lastTimeV;
     update();

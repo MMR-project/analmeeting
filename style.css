@@ -15,7 +15,6 @@ video {
     font-size: 30px;    
     font-weight:bold;        
     text-align:center;    
-    vertical-align: center;
     display:block;    
     text-decoration:none;    
     border:3px solid #225588;    
@@ -31,7 +30,6 @@ video {
     font-size: 15px;    
     font-weight:bold;        
     text-align:center;    
-    vertical-align: center;
     display:block;    
     text-decoration:none;    
     border:1px solid #225588;    

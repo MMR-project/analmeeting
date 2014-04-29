@@ -1,86 +1,20 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-<meta charset="utf-8">
-<title>Meeting Evaluation System</title>
-<link rel="stylesheet" href="meetingevaluationsystem.css">
-<style>
-</style>
-<script>
-
-var averagerange01;
-var averagerange02;
-var averagerange03;
-var averagerange04;
-
-window.onload = function(){
-
-	var data = location.href.split("?")[1];
-	var text = data.split("=")[1];
-	var decodetext = decodeURIComponent(text);
-	var result = decodetext.split(",");
-	var scoreMovie=result[0];
-	var scoreAudio=result[1];
-	sumrange01 = 0;
-	sumrange02 = 0;
-	sumrange03 = 0;
-	sumrange04 = 0;
-	var personcount = 0;
-	// それぞれのボタンを取得
-	var targetBtn = document.getElementById("cde");
-	var finishBtn = document.getElementById("finish")
-	// targetBtnをクリックしたとき
-	targetBtn.onclick = function(){
-		sumrange01 = sumrange01 + parseInt(range01.value);
-		sumrange02 = sumrange02 + parseInt(range02.value);
-		sumrange03 = sumrange03 + parseInt(range03.value);
-		sumrange04 = sumrange04 + parseInt(range04.value);
-		personcount++;
-		averagerange01 = Math.round(sumrange01 / personcount);
-		averagerange02 = Math.round(sumrange02 / personcount);
-		averagerange03 = Math.round(sumrange03 / personcount);
-		averagerange04 = Math.round(sumrange04 / personcount);
-		range01.value = 50;
-		range02.value = 50;
-		range03.value = 50;
-		range04.value = 50;
-	}
-
-	// finishBtnをクリックしたとき
-	finishBtn.onclick = function(){
-		sumrange01 = sumrange01 + parseInt(range01.value);
-		sumrange02 = sumrange02 + parseInt(range02.value);
-		sumrange03 = sumrange03 + parseInt(range03.value);
-		sumrange04 = sumrange04 + parseInt(range04.value);
-		personcount++;
-		averagerange01 = Math.round(sumrange01 / personcount);
-		averagerange02 = Math.round(sumrange02 / personcount);
-		averagerange03 = Math.round(sumrange03 / personcount);
-		averagerange04 = Math.round(sumrange04 / personcount);
-		range01.value = 50;
-		range02.value = 50;
-		range03.value = 50;
-		range04.value = 50;
-		
-		location.href = "result.html?data="+encodeURIComponent(averagerange01+","+averagerange02+","+averagerange03+","+averagerange04+","+scoreMovie+","+scoreAudio);
-	}
-
-	// 初期設定
-	//targetBtn.value = 0;
-	averagerange01, averagerange02, averagerange03, averagerange04 = 0;
-}
-</script>
-</head>
-<body>
-<p>参加する前に持っていたものとは違うアイデア・知見を得ることができた</p>
-<input id="range01" type="range" min="0" max="100" step="1" value="50"/>
-<p>意見を言う機会があった</p>
-<input id="range02" type="range" min="0" max="100" step="1" value="50"/>
-<p>深い議論ができた</p>
-<input id="range03" type="range" min="0" max="100" step="1" value="50"/>
-<p>本音で意見が言えた</p>
-<input id="range04" type="range" min="0" max="100" step="1" value="50"/>
-<p><input type="button" value="次の人へ" id="cde" /></p>
-<p><input type="button" value="最後の人はこっちを押す" id="finish" /></p>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>Meeting Evaluation System</title>
+    <link rel="stylesheet" href="meetingevaluationsystem.css">
+    <script data-main="js/app_questionnaire" src="js/lib/require.js"></script>
+  </head>
+  <body>
+    <p>参加する前に持っていたものとは違うアイデアがでた</p>
+いいえ<input id="range01" type="range" min="0" max="100" step="1" value="50"/>はい
+    <p>意見を言う機会があった</p>
+いいえ<input id="range02" type="range" min="0" max="100" step="1" value="50"/>はい
+    <p>深い議論ができた</p>
+いいえ<input id="range03" type="range" min="0" max="100" step="1" value="50"/>はい
+    <p>本音で意見が言えた</p>
+いいえ<input id="range04" type="range" min="0" max="100" step="1" value="50"/>はい
+    <p align=center><input type="button" value="入力終了" id="next_button"></p>
+  </body>
 </html>
