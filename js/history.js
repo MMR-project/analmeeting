@@ -23,6 +23,9 @@ define(["lib/backbone", "history/item"], function(Backbone, Item){
         window.sessionStorage.setItem(this.sessionName, true);
         this.add(item);
       }
+    },
+    latestItem: function(){
+      return this.at(this.length - 1);
     }
 	});
 

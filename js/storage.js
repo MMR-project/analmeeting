@@ -58,9 +58,11 @@ define(["questionnaire/result", "history"], function(Result, History){
     setDataSlot: function(slot){
       window.sessionStorage.setItem(Storage.key.dataSlot, slot);
     },
-		getHistory: function(){
+		getHistory: function(slot){
 			var result = null;
-      var slot = Storage.getDataSlot();
+      if(slot == null){
+        slot = Storage.getDataSlot();
+      }
 			var json = window.localStorage.getItem(slot) || "";
 			if(json.length > 0){
 				json = JSON.parse(json);
