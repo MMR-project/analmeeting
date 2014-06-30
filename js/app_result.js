@@ -3,7 +3,7 @@ require(["config", "lib/radar", "storage", "history", "history/item"], function(
 	html5jp = html5jp || window.html5jp;
 	var score = Storage.get("score");
 	var answers = Storage.get("answer");
-	var history = Storage.get("history") || new History();
+	var history = Storage.getHistory();
 	var average = answers.average();
 
 
@@ -37,8 +37,8 @@ require(["config", "lib/radar", "storage", "history", "history/item"], function(
 			questionnarie: average,
 			score: score
 		});
-		history.add(history_item);
-		Storage.set("history", history);
+		history.addItem(history_item);
+		Storage.setHistory(history);
 	};
 
 	var showTotalEvaluation = function(){
